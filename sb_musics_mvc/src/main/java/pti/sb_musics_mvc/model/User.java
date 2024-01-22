@@ -1,33 +1,37 @@
 package pti.sb_musics_mvc.model;
 
+import java.util.ArrayList;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
+
 
 @Entity
 @Table(name = "users")
 public class User {
 	
 	@Id
-	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private int id ;
 	
 	@Column(name = "name")
-	private int name;
+	private String name;
 	
-	@Column (name = "musicid")
-	private int musicId;
+	@Transient
+	private ArrayList<Integer> borrowedMusicIds;
 	
 
 	public User() {
-		
+		this.borrowedMusicIds = new ArrayList<>();
 	}
 
-	
+
 	public int getId() {
 		return id;
 	}
@@ -36,32 +40,31 @@ public class User {
 		this.id = id;
 	}
 
-	public int getName() {
+	public String getName() {
 		return name;
 	}
 
-	public void setName(int name) {
+	public void setName(String name) {
 		this.name = name;
 	}
 
-	public int getMusicId() {
-		return musicId;
+	public ArrayList<Integer> getBorrowedMusicIds() {
+		return borrowedMusicIds;
 	}
 
-	public void setMusicId(int musicId) {
-		this.musicId = musicId;
+	public void setBorrowedMusicIds(ArrayList<Integer> borrowedMusicIds) {
+		this.borrowedMusicIds = borrowedMusicIds;
 	}
 
+	public void addMusicId(int musicId)
+	{
+		this.borrowedMusicIds.add(musicId);
+	}
+	
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", musicId=" + musicId + "]";
+		return "User [id=" + id + ", name=" + name + ", borrowedMusicIds=" + borrowedMusicIds + "]";
 	}
-	
-	
-	
-	
-	
-	
 
 
 }

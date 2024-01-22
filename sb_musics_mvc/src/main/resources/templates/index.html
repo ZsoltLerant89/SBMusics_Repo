@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Index</title>
+	</head>
+	<body>
+		<form action= "/user" method= "get">
+			<p>User ID</p>
+			<input type= "number" name= "userid" />
+			<input type= "submit" value= "Send" />
+		</form>
+		
+		<div th:if = "${user} != null">
+			<h4>Name:</h4>
+			<p th:text= "${user.getName()}"></p>
+			<h4>Borrowed Musics:</h4>
+			<p th:text= "${user.getBorrowedMusicIds()}"></p>
+		</div>
+	</body>
+</html>
